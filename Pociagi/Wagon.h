@@ -2,13 +2,24 @@
 #include <vector>
 #include "Miejsce.h"
 
+using namespace std;
+
 class Wagon {
 protected:
-	int numerWagonu;
-	std::vector<Miejsce> siedzenia;
-public:
-	Wagon(int nr) : numerWagonu(nr){}
-	virtual ~Wagon() = default;
+    int numerWagonu;
+    double cenaZaMiejsce;
+    vector<Miejsce> siedzenia;
 
-	virtual void wyswietlSchemat() const = 0;
+public:
+    Wagon(int nr, double cena) {
+        numerWagonu = nr;
+        cenaZaMiejsce = cena;
+    }
+    virtual ~Wagon() {}
+
+    virtual void generujMiejsca() = 0;
+    virtual void wyswietlSchemat() = 0;
+
+    int pobierzNumer() { return numerWagonu; }
+    vector<Miejsce>& pobierzMiejsca() { return siedzenia; }
 };
