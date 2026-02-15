@@ -1,9 +1,9 @@
 #pragma once
 #include <vector>
-#include <Miejsce.h>
+#include "Miejsce.h"
 
 class Wagon {
 protected:
 	int numerWagonu;
-	std::vector<Miejsca> siedzenia
+	std::vector<Miejsce> siedzenia;
 };
