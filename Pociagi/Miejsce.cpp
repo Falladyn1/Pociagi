@@ -1,0 +1,1 @@
+#include "Miejsce.h"
