@@ -21,3 +21,7 @@ void Miejsce::zwolnij() {
 int Miejsce::getNumer() const {
     return status;
 }
+
+TypMiejsca Miejsce::getRodzaj() const {
+    return rodzaj;
+}
