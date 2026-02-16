@@ -24,7 +24,7 @@ void WagonPrzedzialowy::generujMiejsca() {
     }
 }
 
-void WagonPrzedzialowy::wyswietlSchemat() {
+void WagonPrzedzialowy::wyswietlSchemat() const {
     cout << "Wagon " << numerWagonu << " (Przedzialowy):" << endl;
     int iloscPrzedzialow = siedzenia.size() / 6;
 

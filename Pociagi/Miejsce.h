@@ -13,11 +13,11 @@ private:
 public:
     Miejsce(int nr, TypMiejsca r, double cena);
     ~Miejsce();
-    bool czyWolne();
-    int pobierzNumer();
-    TypMiejsca pobierzRodzaj();
-    Pasazer* pobierzPasazera();
-    double obliczCeneKoncowa();
+    bool czyWolne() const;
+    int pobierzNumer() const;
+    TypMiejsca pobierzRodzaj() const;
+    Pasazer* pobierzPasazera() const;
+    double obliczCeneKoncowa() const;
 
     void zarezerwuj(Pasazer* p);
     void zwolnij();

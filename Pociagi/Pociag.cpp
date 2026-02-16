@@ -22,7 +22,7 @@ void Pociag::dodajWagon(Wagon* w) {
 }
 
 // naglowek pociagu trasa i schematy wszystkich wagonow
-void Pociag::pokazPodgladPociagu() {
+void Pociag::pokazPodgladPociagu() const {
     ustawKolor(KOLOR_ZOLTY);
     cout << "POCIAG: " << nazwa << " | ODJAZD: " << godzinaOdjazdu << endl;
     ustawKolor(KOLOR_RESET);
@@ -101,7 +101,7 @@ void Pociag::anulujRezerwacje(int nrWagonu, int nrMiejsca) {
     }
 }
 
-void Pociag::wyswietlListePasazerow() {
+void Pociag::wyswietlListePasazerow() const {
     for (int i = 0; i < wagony.size(); i++) {
         for (int j = 0; j < wagony[i]->pobierzMiejsca().size(); j++) {
             if (wagony[i]->pobierzMiejsca()[j].czyWolne() == false) {
@@ -115,7 +115,7 @@ void Pociag::wyswietlListePasazerow() {
     }
 }
 
-void Pociag::zapiszStanDoPliku() {
+void Pociag::zapiszStanDoPliku() const {
     ofstream plik("baza_danych.txt", ios::app);
     if (plik.is_open() == false) return;
 
@@ -172,6 +172,6 @@ void Pociag::wczytajStanZPliku() {
 }
 
 // Typowe gettery
-string Pociag::pobierzNazwe() { return nazwa; }
-string Pociag::pobierzGodzine() { return godzinaOdjazdu; }
-Trasa& Pociag::pobierzTrase() { return trasa; }
+string Pociag::pobierzNazwe() const { return nazwa; }
+string Pociag::pobierzGodzine() const { return godzinaOdjazdu; }
+Trasa& Pociag::pobierzTrase() const { return trasa; }

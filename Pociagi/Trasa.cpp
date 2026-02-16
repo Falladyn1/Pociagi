@@ -12,7 +12,7 @@ void Trasa::dodajStacje(string nazwaStacji) {
     stacje.push_back(nazwaStacji);
 }
 
-void Trasa::wyswietlPrzebieg() {
+void Trasa::wyswietlPrzebieg() const {
     cout << "RELACJA: " << nazwaRelacji << endl;
     ustawKolor(KOLOR_NIEBIESKI);
 
@@ -27,6 +27,6 @@ void Trasa::wyswietlPrzebieg() {
     cout << endl << endl;
 }
 
-vector<string>& Trasa::pobierzStacje() {
+vector<string>& Trasa::pobierzStacje() const {
     return stacje;
 }

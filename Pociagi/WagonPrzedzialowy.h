@@ -5,5 +5,5 @@ class WagonPrzedzialowy : public Wagon {
 public:
     WagonPrzedzialowy(int nr);
     void generujMiejsca();
-    void wyswietlSchemat();
+    void wyswietlSchemat() const;
 };

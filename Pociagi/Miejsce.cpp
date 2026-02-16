@@ -13,16 +13,16 @@ Miejsce::~Miejsce() {
     }
 }
 
-bool Miejsce::czyWolne() {
+bool Miejsce::czyWolne() const{
     if (pasazer == nullptr) return true;
     else return false;
 }
 
-int Miejsce::pobierzNumer() { return numerMiejsca; }
-TypMiejsca Miejsce::pobierzRodzaj() { return rodzaj; }
-Pasazer* Miejsce::pobierzPasazera() { return pasazer; }
+int Miejsce::pobierzNumer() const { return numerMiejsca; }
+TypMiejsca Miejsce::pobierzRodzaj() const { return rodzaj; }
+Pasazer* Miejsce::pobierzPasazera() const { return pasazer; }
 
-double Miejsce::obliczCeneKoncowa() {
+double Miejsce::obliczCeneKoncowa() const {
     if (czyWolne() == true) {
         return cenaBazowa;
     }

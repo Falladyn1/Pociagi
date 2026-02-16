@@ -24,7 +24,7 @@ void WagonBezprzedzialowy::generujMiejsca() {
     }
 }
 
-void WagonBezprzedzialowy::wyswietlSchemat() {
+void WagonBezprzedzialowy::wyswietlSchemat() const {
     cout << "Wagon " << numerWagonu << " (Bezprzedzialowy):" << endl;
     for (int i = 0; i < siedzenia.size(); i++) {
         if (siedzenia[i].czyWolne() == true) {

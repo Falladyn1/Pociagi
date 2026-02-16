@@ -15,11 +15,10 @@ private:
 public:
     Pasazer(string i, string n, TypUlgi u);
 
-    // Gettery
-    string pobierzImie();
-    string pobierzNazwisko();
-    TypUlgi pobierzUlge();
-    double pobierzMnoznikCeny();
+    string pobierzImie() const;
+    string pobierzNazwisko() const;
+    TypUlgi pobierzUlge() const;
+    double pobierzMnoznikCeny() const;
 
-    friend ostream& operator<<(ostream& os, Pasazer& p);
+    friend ostream& operator<<(ostream& os, const Pasazer& p);
 };

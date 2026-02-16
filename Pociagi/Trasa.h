@@ -12,6 +12,6 @@ private:
 public:
     Trasa(string nazwa);
     void dodajStacje(string nazwaStacji);
-    void wyswietlPrzebieg();
-    vector<string>& pobierzStacje();
+    void wyswietlPrzebieg() const;
+    vector<string>& pobierzStacje() const;
 };

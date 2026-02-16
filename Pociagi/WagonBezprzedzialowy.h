@@ -5,5 +5,5 @@ class WagonBezprzedzialowy : public Wagon {
 public:
     WagonBezprzedzialowy(int nr);
     void generujMiejsca();
-    void wyswietlSchemat();
+    void wyswietlSchemat() const;
 };

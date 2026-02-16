@@ -14,7 +14,7 @@ public:
         pociagi.push_back(p);
     }
 
-    vector<Pociag*> znajdzPolaczenia(string skad, string dokad) {
+    vector<Pociag*> znajdzPolaczenia(const string& skad, const string& dokad) const {
         vector<Pociag*> znalezione;
 
         for (int i = 0; i < pociagi.size(); i++) {

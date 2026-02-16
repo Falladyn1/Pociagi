@@ -18,8 +18,8 @@ public:
     virtual ~Wagon() {}
 
     virtual void generujMiejsca() = 0;
-    virtual void wyswietlSchemat() = 0;
+    virtual void wyswietlSchemat() const = 0;
 
-    int pobierzNumer() { return numerWagonu; }
-    vector<Miejsce>& pobierzMiejsca() { return siedzenia; }
+    int pobierzNumer() const { return numerWagonu; }
+    vector<Miejsce>& pobierzMiejsca()  { return siedzenia; }
 };

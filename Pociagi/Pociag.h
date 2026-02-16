@@ -21,13 +21,13 @@ public:
     void zarezerwujMiejsce(int nrWagonu, int nrMiejsca);
     void anulujRezerwacje(int nrWagonu, int nrMiejsca);
 
-    void wyswietlListePasazerow();
-    void pokazPodgladPociagu();
+    void wyswietlListePasazerow() const;
+    void pokazPodgladPociagu() const;
 
-    void zapiszStanDoPliku();
+    void zapiszStanDoPliku() const;
     void wczytajStanZPliku();
 
-    string pobierzNazwe();
-    string pobierzGodzine();
-    Trasa& pobierzTrase();
+    string pobierzNazwe() const;
+    string pobierzGodzine() const;
+    Trasa& pobierzTrase() const;
 };
