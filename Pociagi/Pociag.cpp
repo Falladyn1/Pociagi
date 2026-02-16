@@ -99,6 +99,7 @@ void Pociag::anulujRezerwacje(int nrWagonu, int nrMiejsca) {
             }
         }
     }
+    throw BladRezerwacji("Nie znaleziono wagonu lub miejsca o podanym numerze!");
 }
 
 void Pociag::wyswietlListePasazerow() const {
@@ -156,7 +157,7 @@ void Pociag::wczytajStanZPliku() {
         if (u == 1) ulga = TypUlgi::STUDENT;
         else if (u == 2) ulga = TypUlgi::SENIOR;
         else ulga = TypUlgi::NORMALNY;
-
+        
         for (int i = 0; i < wagony.size(); i++) {
             if (wagony[i]->pobierzNumer() == w) {
                 for (int j = 0; j < wagony[i]->pobierzMiejsca().size(); j++) {
@@ -171,7 +172,8 @@ void Pociag::wczytajStanZPliku() {
     plik.close();
 }
 
-// Typowe gettery
+
 string Pociag::pobierzNazwe() const { return nazwa; }
 string Pociag::pobierzGodzine() const { return godzinaOdjazdu; }
-Trasa& Pociag::pobierzTrase() const { return trasa; }
+
+const Trasa& Pociag::pobierzTrase() const { return trasa; }

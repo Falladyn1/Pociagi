@@ -27,6 +27,6 @@ void Trasa::wyswietlPrzebieg() const {
     cout << endl << endl;
 }
 
-vector<string>& Trasa::pobierzStacje() const {
+const vector<string>& Trasa::pobierzStacje() const {
     return stacje;
 }

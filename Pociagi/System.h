@@ -13,6 +13,7 @@ private:
     void obslugaAnulowania();
     void obslugaListyPasazerow();
     void wyswietlDostepneStacje();
+    void wyswietlWszystkieTrasy();
 
 public:
     System();

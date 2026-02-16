@@ -29,5 +29,5 @@ public:
 
     string pobierzNazwe() const;
     string pobierzGodzine() const;
-    Trasa& pobierzTrase() const;
+    const Trasa& pobierzTrase() const;
 };

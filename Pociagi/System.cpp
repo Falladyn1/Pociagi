@@ -69,6 +69,7 @@ void System::uruchom() {
         cout << " [3] Lista pasazerow (Administrator)" << endl;
         cout << " [4] Zapisz stan systemu (Bilety)" << endl;
         cout << " [5] Dostepne stacje" << endl;
+        cout << " [6] Lista wszystkich tras i pociagow" << endl;
         cout << " [0] WYJSCIE" << endl;
         cout << "======================================" << endl;
         cout << " Wybor > ";
@@ -79,42 +80,48 @@ void System::uruchom() {
             continue;
         }
 
-        if (opcja == 1) {
+        switch (opcja) {
+        case 1:
             obslugaRezerwacji();
-        }
-        else if (opcja == 2) {
+            break;
+        case 2:
             obslugaAnulowania();
-        }
-        else if (opcja == 3) {
+            break;
+        case 3:
             system("cls");
             obslugaListyPasazerow();
-        }
-        else if (opcja == 4) {
+            break;
+        case 4: {
             ofstream plik("baza_danych.txt", ios::trunc);
             plik.close();
-
             for (int i = 0; i < pociagi.size(); i++) {
                 pociagi[i]->zapiszStanDoPliku();
             }
-
             ustawKolor(KOLOR_ZIELONY);
             cout << "Zapisano dane rezerwacji wszystkich pociagow!" << endl;
             ustawKolor(KOLOR_RESET);
+            break;
         }
-        else if (opcja == 5) {
+        case 5:
             system("cls");
             wyswietlDostepneStacje();
-        }
-        else if (opcja == 0) {
+            break;
+        case 6:
+            system("cls");
+            wyswietlWszystkieTrasy();
+            break;
+        case 0:
             cout << "Do widzenia!" << endl;
-        }
-        else {
+            break;
+        default:
             cout << "Nieznana opcja." << endl;
+            break;
         }
 
+        // Zabezpieczenie przed natychmiastowym zniknieciem tekstu
         if (opcja != 0) {
             cout << endl << "Nacisnij [Enter], aby wrocic do menu...";
-            cin.ignore();
+            cin.ignore(1000, '\n');
             cin.get();
         }
 
@@ -145,7 +152,10 @@ void System::obslugaRezerwacji() {
 
     int wybor;
     cout << endl << "Wybierz numer pociagu (0 aby anulowac): ";
-    cin >> wybor;
+    if (!(cin >> wybor)) {
+        cin.clear(); cin.ignore(1000, '\n');
+        return;
+    }
 
     if (wybor > 0 && wybor <= wyniki.size()) {
         Pociag* wybrany = wyniki[wybor - 1];
@@ -154,8 +164,20 @@ void System::obslugaRezerwacji() {
 
         int w, m;
         cout << endl << "--- KUPNO BILETU ---" << endl;
-        cout << "Numer wagonu: "; cin >> w;
-        cout << "Numer miejsca: "; cin >> m;
+
+        cout << "Numer wagonu: ";
+        if (!(cin >> w)) {
+            cin.clear(); cin.ignore(1000, '\n');
+            ustawKolor(KOLOR_CZERWONY); cout << "Blad formatu danych!" << endl; ustawKolor(KOLOR_RESET);
+            return;
+        }
+
+        cout << "Numer miejsca: ";
+        if (!(cin >> m)) {
+            cin.clear(); cin.ignore(1000, '\n');
+            ustawKolor(KOLOR_CZERWONY); cout << "Blad formatu danych!" << endl; ustawKolor(KOLOR_RESET);
+            return;
+        }
 
         try {
             wybrany->zarezerwujMiejsce(w, m);
@@ -197,8 +219,17 @@ void System::obslugaAnulowania() {
         return;
     }
 
-    cout << "Podaj numer wagonu: "; cin >> w;
-    cout << "Podaj numer miejsca: "; cin >> m;
+    cout << "Podaj numer wagonu: ";
+    if (!(cin >> w)) {
+        cin.clear(); cin.ignore(1000, '\n');
+        return;
+    }
+
+    cout << "Podaj numer miejsca: ";
+    if (!(cin >> m)) {
+        cin.clear(); cin.ignore(1000, '\n');
+        return;
+    }
 
     try {
         znalezionyPociag->anulujRezerwacje(w, m);
@@ -254,4 +285,28 @@ void System::wyswietlDostepneStacje() {
     }
 
     cout << "===============================" << endl;
+}
+
+void System::wyswietlWszystkieTrasy() {
+    ustawKolor(KOLOR_NIEBIESKI);
+    cout << endl << "=== LISTA WSZYSTKICH TRAS I POCIAGOW ===" << endl << endl;
+    ustawKolor(KOLOR_RESET);
+
+    if (pociagi.size() == 0) {
+        ustawKolor(KOLOR_CZERWONY);
+        cout << " [!] Brak pociagow w bazie danych." << endl;
+        ustawKolor(KOLOR_RESET);
+        return;
+    }
+
+    for (int i = 0; i < pociagi.size(); i++) {
+        ustawKolor(KOLOR_ZOLTY);
+        cout << ">> Pociag: " << pociagi[i]->pobierzNazwe()
+            << " | Odjazd: " << pociagi[i]->pobierzGodzine() << endl;
+        ustawKolor(KOLOR_RESET);
+
+        pociagi[i]->pobierzTrase().wyswietlPrzebieg();
+
+        cout << "--------------------------------------" << endl;
+    }
 }

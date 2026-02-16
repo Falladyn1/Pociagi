@@ -13,5 +13,5 @@ public:
     Trasa(string nazwa);
     void dodajStacje(string nazwaStacji);
     void wyswietlPrzebieg() const;
-    vector<string>& pobierzStacje() const;
+    const vector<string>& pobierzStacje() const;
 };
